@@ -1,0 +1,18 @@
+    postCreate: function() {
+      this.inherited(arguments);
+
+      this.drawToolbar = new Draw(this.map, {
+        tooltipOffset: 20,
+        drawTime: 90
+      });
+      this.drawToolbar.on("draw-end", this.drawEndHandler.bind(this));
+    },
+
+    startDrawClickHandler: function() {
+      console.log('Start Draw!');
+      this.drawToolbar.active(Draw.POLYGON);
+    },
+    drawEndHandler: function(event) {
+      console.log("drawEnd", event);
+      this.drawToolbar.deactivate();
+    }
